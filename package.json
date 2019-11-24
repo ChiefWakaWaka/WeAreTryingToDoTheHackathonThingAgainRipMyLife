@@ -1,0 +1,9 @@
+{
+    "name": "Hackathon-Thing-Again",
+    "version": "0.0.1",
+    "description": "recreating the disaster but it's gonna work this time",
+    "dependencies": {
+        "express": "^4.17.1",
+        "socket.io": "^2.3.0"
+    }
+}

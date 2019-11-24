@@ -1,0 +1,90 @@
+<!doctype html>
+<script src="/socket.io/socket.io.js"></script>
+<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+<script>
+  $(function () {
+    var socket = io();
+    $('form').submit(function(e){
+      e.preventDefault(); // prevents page reloading
+      socket.emit('requestTitle', $('#title').val());
+      socket.emit('requestQuestion: ', $('#question').val());
+      $('#title').val('');
+      $('#question').val('');
+      return false;
+    });
+  });
+</script>
+<html>
+  <head>
+    <title>Presentation Questioner</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: serif;
+      }
+      form {
+        height: 50%;
+        width: 100%;
+      }
+      form input, textarea {
+        border: 10px;
+        padding: 10px;
+        width: 90%;
+        margin-right: 5%;
+        margin-left: 5%;
+      }
+      form button {
+        width: 90%;
+        background: rgb(100, 194, 225);
+        border: none;
+        padding: 10px;
+        margin-left: 5%;
+        margin-right: 5%;
+      }
+      #messages {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+      }
+      #messages li {
+        padding: 5px 10px;
+      }
+      #messages li:nth-child(odd) { background: #eee; }
+    </style>
+    <style>
+      .formSection {
+        height: 100%; /* Full-height: remove this if you want "auto" height */
+        width: 25%; /* Set the width of the sidebar */
+        position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+        z-index: 1; /* Stay on top */
+        top: 0; /* Stay at the top */
+        right: 0;
+        background-color: #111; /* Black */
+        overflow-x: hidden; /* Disable horizontal scroll */
+        padding-top: 20px;
+      }
+      .formSection h1 {
+        color: white;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+  <ul id="messages"></ul>
+  <div class="formSection">
+    <h1>Ask A Question!</h1>
+    <br><br><br>
+    <form action="">
+      <input id="title" autocomplete="off" placeholder="Title"></input>
+      <br><br>
+      <textarea id="question" autocomplete="off" rows=20 placeholder="Question"></textarea>
+      <br><br>
+      <button>Send</button>
+    </form>
+  </div>
+</body>
+</html>
